@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,8 +19,6 @@ import javax.validation.constraints.NotNull;
 @Document
 public class SpaceShipResponse {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     @NotEmpty
@@ -36,4 +33,6 @@ public class SpaceShipResponse {
     @NotNull
     private SpaceShipType spaceShipType;
 
+    @NotEmpty
+    private String spaceFleetId;
 }
