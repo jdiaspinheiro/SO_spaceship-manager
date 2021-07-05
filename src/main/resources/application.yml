@@ -13,3 +13,117 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     instance:
       hostname: localhost
+
+cloud:
+  aws:
+    region:
+      auto: false
+      static: eu-west-1
+    stack:
+      auto: false
+
+aws:
+  kms:
+    region: eu-west-1
+
+  sqs:
+    gdspsimadapter:
+      name: http://localhost:4566/000000000000/gdspsimadapter-queue
+      enabled: true
+    simcallback:
+      name: http://localhost:4566/000000000000/simcallback-queue
+      enabled: true
+
+smartlife:
+  service:
+    headerValidationEnabled: true
+    error:
+      reference: https://apix.developer.vodafone.com/page/common-error-codes
+      code-mapping:
+        404: resource_not_found
+        1000: failed_customer_processing
+        1001: customer_not_eligible
+        1002: invalid_client_id
+        1003: action_not_available
+        1004: invalid_image
+        1005: invalid_request
+        1006: invalid_request
+        1007: internal_server_error
+        1120: resource_not_found
+        4000: resource_not_found
+        4003: product_not_available_for_country
+        4004: product_not_available_for_customer
+        4005: action_not_applicable
+        4006: invalid_scopes
+        5001: internal_server_error
+        5002: internal_server_error
+        5003: device_already_registered
+        5004: internal_server_error
+        5006: internal_server_error
+        5007: internal_server_error
+        7701: internal_server_error
+        6000: resource_not_found
+        5005: resource_not_found
+        8032: invalid_request
+        8033: resource_already_exists
+        8034: too_many_request
+        9001: method_not_allowed
+        9003: invalid_tac
+        9998: not_acceptable
+        9999: internal_server_error
+      code-reasons:
+        action_not_applicable: Requested action is not applicable for specified resource
+        action_not_available: The requested action is not available for this resource
+        customer_not_eligible: Customer is not eligible
+        device_already_registered: Device is already registered with another user
+        failed_customer_processing: Failed to process the customer identity
+        invalid_client_id: Invalid clientId
+        invalid_image: Invalid image specified
+        invalid_request: The request could not be understood
+        invalid_scopes: Invalid scopes
+        invalid_tac: The requested resource could not be found
+        invalid_grant: Authorization code invalid
+        invalid_date: Invalid date
+        access_denied: access denied for specified resource
+        token_invalidated: Invalid refresh token
+        internal_server_error: An internal error occurred
+        method_not_allowed: Method not allowed
+        not_acceptable: Content type not acceptable
+        product_not_available_for_country: Product is not available for market
+        product_not_available_for_customer: Product is not available for customer
+        resource_not_found: The requested resource could not be found
+        resource_already_exists: The specified resource already exists
+        internal_error: An internal error occurred
+        unsupported_media_type: Request payload is in an unsupported format
+        precondition_not_met: A precondition provided in request was not met
+        different_customer_reference_detected: The customerReference returned by partner is different from the one already stored
+        customer_reference_already_in_use: The customerReference returned by partner is already in use
+        too_many_request: Rate limit reached for this call
+        payload_to_large: Maximum payload size exceeded
+        service_unavailable: Service Unavailable
+        resource_locked_for_transactions: The requested resource is currently locked
+      status-mapping:
+        resource_not_found: 404
+        invalid_request: 400
+        resource_already_exists: 409
+        action_not_applicable: 403
+        action_not_available: 400
+        invalid_grant: 400
+        invalid_date: 400
+        access_denied: 403
+        token_invalidated: 400
+        unsupported_media_type: 415
+        precondition_not_met: 412
+        different_customer_reference_detected: 409
+        customer_reference_already_in_use: 409
+        too_many_request: 429
+        payload_to_large: 413
+        internal_error: 500
+        product_not_available_for_country: 403
+        device_already_registered: 403
+        invalid_client_id: 404
+        invalid_tac: 404
+        product_not_available_for_customer: 403
+        service_unavailable: 503
+        customer_not_eligible: 403
+        resource_locked_for_transactions: 409

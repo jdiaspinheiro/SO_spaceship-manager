@@ -4,6 +4,7 @@ import com.celfocus.training.spaceover.spaceship.manager.domain.model.SpaceShip;
 import com.celfocus.training.spaceover.spaceship.manager.domain.request.SpaceShipRequest;
 import com.celfocus.training.spaceover.spaceship.manager.domain.response.SpaceShipResponse;
 import com.celfocus.training.spaceover.spaceship.manager.service.SpaceShipService;
+import com.vodafone.global.smartlife.service.error.v2.ControllerV2;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/spaceship")
 @RequiredArgsConstructor
-public class SpaceOverSpaceShipController implements SpaceFleetController {
+public class SpaceOverSpaceShipController implements SpaceFleetController, ControllerV2 {
 
     private final ModelMapper modelMapper;
     private final SpaceShipService spaceShipService;

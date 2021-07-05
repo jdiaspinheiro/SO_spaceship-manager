@@ -1,0 +1,25 @@
+[
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/hello/.*",
+      "queryStringParameters": {
+        "application": [
+          "gdsp"
+        ],
+        "countryId": [
+          ".*"
+        ]
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": [
+          "application/json"
+        ]
+      },
+      "body": "{\"hello\":\"stranger\"}"
+    }
+  }
+]

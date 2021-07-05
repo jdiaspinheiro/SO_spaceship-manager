@@ -1,0 +1,34 @@
+version: '2.1'
+
+services:
+  aws_localstack:
+    container_name: aws_localstack
+    image: localstack/localstack-light:latest
+    ports:
+      - "4566-4599:4566-4599"
+    environment:
+      - SERVICES=sqs,sns
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+      - PORT_WEB_UI=8055
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOST_TMP_FOLDER=${TMPDIR}
+    volumes:
+      - './aws-local-setup:/docker-entrypoint-initaws.d/'
+      - "/tmp/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  backend-mock:
+    container_name: backend-mock
+    image: mockserver/mockserver:latest
+    command: -logLevel DEBUG -serverPort 1080
+    ports:
+      - 1080:1080
+    volumes:
+      - './local-backend-setup/mockResponses.json:/config/mockResponses.json'
+    environment:
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/mockResponses.json
